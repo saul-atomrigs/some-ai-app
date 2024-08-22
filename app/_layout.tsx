@@ -54,13 +54,21 @@ export default function RootLayout() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Upload a conversation screenshot</Text>
-      <Button title='Pick an image from camera roll' onPress={pickImage} />
+      <Text style={styles.title}>대화 스크린샷을 업로드해주세요</Text>
+      <Button
+        title='앨범에서 이미지 선택'
+        onPress={pickImage}
+        color='#4CAF50'
+      />
       {imageUri && <Image source={{ uri: imageUri }} style={styles.image} />}
       {loading ? (
-        <ActivityIndicator size='large' color='#0000ff' />
+        <ActivityIndicator
+          size='large'
+          color='#0000ff'
+          style={styles.loadingIndicator}
+        />
       ) : (
-        <Button title='Analyze' onPress={handleAnalyze} />
+        <Button title='분석하기' onPress={handleAnalyze} color='#FF5722' />
       )}
     </View>
   );
@@ -120,17 +128,25 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 16,
+    padding: 24,
+    backgroundColor: '#f5f5f5',
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    fontSize: 28,
+    fontWeight: '700',
+    marginBottom: 30,
     textAlign: 'center',
+    color: '#333',
   },
   image: {
-    width: 200,
-    height: 200,
-    marginVertical: 20,
+    width: 250,
+    height: 250,
+    borderRadius: 10,
+    marginVertical: 30,
+    borderWidth: 1,
+    borderColor: '#ddd',
+  },
+  loadingIndicator: {
+    marginTop: 20,
   },
 });
