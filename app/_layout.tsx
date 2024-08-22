@@ -18,6 +18,7 @@ const openai = new OpenAI({
 export default function RootLayout() {
   const [imageUri, setImageUri] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [analysisResult, setAnalysisResult] = useState<string>('');
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -44,6 +45,7 @@ export default function RootLayout() {
       });
 
       const analysisResult = await analyzeImage(base64Image);
+      setAnalysisResult(analysisResult);
       console.log('handleAnalyze:', analysisResult);
     } catch (error) {
       console.error('Error analyzing image:', error);
@@ -70,6 +72,7 @@ export default function RootLayout() {
       ) : (
         <Button title='분석하기' onPress={handleAnalyze} color='#FF5722' />
       )}
+      {analysisResult && <Text>{analysisResult}</Text>}
     </View>
   );
 }
@@ -98,7 +101,7 @@ const analyzeImage = async (base64Image: string) => {
     const extractedText = response.choices[0]?.message?.content || '';
 
     if (extractedText) {
-      const prompt = `Given the following conversation, determine if there is a romantic interest (a "crush" or "like" situation) between the participants. If there is, provide a response indicating that. If not, provide a response indicating otherwise.\n\nConversation:\n${extractedText}\n\nResponse:`;
+      const prompt = `다음 대화를 바탕으로, 참여자들 간에 로맨틱한 관심(호감이나 좋아하는 감정)이 있는지 판단하세요. 그렇다면, 그 다음에 이어질 대화를 추천해주세요. 만약 그렇지 않다면, 현재 대화 주제를 파악해서 설명해주세요.\n\대화:\n${extractedText}\n\n응답:`;
 
       const analysisResponse = await openai.chat.completions.create({
         model: 'gpt-4o-mini',
