@@ -101,7 +101,7 @@ const analyzeImage = async (base64Image: string) => {
     const extractedText = response.choices[0]?.message?.content || '';
 
     if (extractedText) {
-      const prompt = `다음 대화를 바탕으로, 참여자들 간에 로맨틱한 관심(호감이나 좋아하는 감정)이 있는지 판단하세요. 그렇다면, 그 다음에 이어질 대화를 추천해주세요. 만약 그렇지 않다면, 현재 대화 주제를 파악해서 설명해주세요.\n\대화:\n${extractedText}\n\n응답:`;
+      const prompt = `다음 글의 주제를 한줄로 요약해줘. 만약 로맨틱한 관심(호감이나 이성적으로 좋아하는 감정)이 있으면 %로 나타내줘. 그리고 이어질 대화를 추천해줘.\n\대화:\n${extractedText}\n\n응답:`;
 
       const analysisResponse = await openai.chat.completions.create({
         model: 'gpt-4o-mini',
