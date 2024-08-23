@@ -57,6 +57,12 @@ export default function RootLayout() {
             )}
           </TouchableOpacity>
 
+          {analysisResult && (
+            <View style={styles.analysisResultContainer}>
+              <Text style={styles.analysisResultText}>{analysisResult}</Text>
+            </View>
+          )}
+
           {loading ? (
             <ActivityIndicator
               size='large'
@@ -72,14 +78,10 @@ export default function RootLayout() {
               onPress={handleAnalyze}
               disabled={!imageUri} // Disable the button when no image is selected
             >
-              <Text style={styles.analyzeButtonText}>분석하기</Text>
+              <Text style={styles.analyzeButtonText}>
+                {imageUri ? '다른 대화 선택하기' : '분석하기'}
+              </Text>
             </TouchableOpacity>
-          )}
-
-          {analysisResult && (
-            <View style={styles.analysisResultContainer}>
-              <Text style={styles.analysisResultText}>{analysisResult}</Text>
-            </View>
           )}
         </View>
       </ScrollView>
