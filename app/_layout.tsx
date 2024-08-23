@@ -1,24 +1,18 @@
 import React, { useState } from 'react';
 import {
-  Text,
-  View,
+  ActivityIndicator,
   Button,
   Image,
-  ActivityIndicator,
   StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import * as FileSystem from 'expo-file-system';
-import OpenAI from 'openai';
-
-const openai = new OpenAI({
-  apiKey: process.env.EXPO_PUBLIC_OPENAI_API_KEY,
-});
+import useImageAnalyzer from './hooks/useImageAnalyzer';
 
 export default function RootLayout() {
   const [imageUri, setImageUri] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [analysisResult, setAnalysisResult] = useState<string>('');
+  const { loading, analysisResult, analyzeImage } = useImageAnalyzer();
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -36,21 +30,8 @@ export default function RootLayout() {
   };
 
   const handleAnalyze = async () => {
-    if (!imageUri) return;
-
-    setLoading(true);
-    try {
-      const base64Image = await FileSystem.readAsStringAsync(imageUri, {
-        encoding: FileSystem.EncodingType.Base64,
-      });
-
-      const analysisResult = await analyzeImage(base64Image);
-      setAnalysisResult(analysisResult);
-      console.log('handleAnalyze:', analysisResult);
-    } catch (error) {
-      console.error('Error analyzing image:', error);
-    } finally {
-      setLoading(false);
+    if (imageUri) {
+      await analyzeImage(imageUri);
     }
   };
 
@@ -76,55 +57,6 @@ export default function RootLayout() {
     </View>
   );
 }
-
-const analyzeImage = async (base64Image: string) => {
-  try {
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
-      messages: [
-        {
-          role: 'user',
-          content: [
-            { type: 'text', text: 'Please extract the text from this image.' },
-            {
-              type: 'image_url',
-              image_url: {
-                url: 'data:image/jpeg;base64,' + base64Image,
-                detail: 'low',
-              },
-            },
-          ],
-        },
-      ],
-    });
-
-    const extractedText = response.choices[0]?.message?.content || '';
-
-    if (extractedText) {
-      const prompt = `다음 글의 주제를 한줄로 요약해줘. 만약 로맨틱한 관심(호감이나 이성적으로 좋아하는 감정)이 있으면 %로 나타내줘. 그리고 이어질 대화를 추천해줘.\n\대화:\n${extractedText}\n\n응답:`;
-
-      const analysisResponse = await openai.chat.completions.create({
-        model: 'gpt-4o-mini',
-        messages: [
-          {
-            role: 'user',
-            content: [{ type: 'text', text: prompt }],
-          },
-        ],
-      });
-
-      return (
-        analysisResponse.choices[0]?.message?.content ||
-        'No analysis result available.'
-      );
-    } else {
-      return 'Failed to extract text from image.';
-    }
-  } catch (error) {
-    console.error('OpenAI API request failed:', error);
-    return 'Failed to analyze image.';
-  }
-};
 
 const styles = StyleSheet.create({
   container: {
