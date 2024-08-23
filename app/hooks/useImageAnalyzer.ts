@@ -42,7 +42,7 @@ const useImageAnalyzer = () => {
       const extractedText = response.choices[0]?.message?.content || '';
 
       if (extractedText) {
-        const prompt = `다음 글의 주제를 한줄로 요약해줘. 만약 로맨틱한 관심(호감이나 이성적으로 좋아하는 감정)이 있으면 %로 나타내줘. 그리고 이어질 대화를 추천해줘.\n\대화:\n${extractedText}\n\n응답:`;
+        const prompt = `대화 내용에서 로맨틱한 관심(호감이나 이성적으로 좋아하는 감정)이 있으면 %로 나타내줘. 그리고 이어질 대화를 추천해줘.\n\대화:\n${extractedText}\n\n응답:`;
 
         const analysisResponse = await openai.chat.completions.create({
           model: 'gpt-4o-mini',
