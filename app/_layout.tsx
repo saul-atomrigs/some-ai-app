@@ -27,13 +27,21 @@ export default function RootLayout() {
 
     if (!result.canceled && result.assets) {
       setImageUri(result.assets[0].uri);
-      setAnalysisResult(null); // Clear previous result when a new image is selected
+      setAnalysisResult(null);
     }
   };
 
   const handleAnalyze = async () => {
     if (imageUri) {
       await analyzeImage(imageUri);
+    }
+  };
+
+  const handleButtonPress = () => {
+    if (analysisResult) {
+      pickImage();
+    } else {
+      handleAnalyze();
     }
   };
 
@@ -75,11 +83,11 @@ export default function RootLayout() {
                 styles.analyzeButton,
                 { backgroundColor: imageUri ? '#FF5722' : '#ccc' },
               ]}
-              onPress={handleAnalyze}
-              disabled={!imageUri} // Disable the button when no image is selected
+              onPress={handleButtonPress}
+              disabled={loading}
             >
               <Text style={styles.analyzeButtonText}>
-                {imageUri ? '다른 대화 선택하기' : '분석하기'}
+                {analysisResult ? '다른 대화 선택하기' : '분석하기'}
               </Text>
             </TouchableOpacity>
           )}
