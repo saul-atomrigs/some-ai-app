@@ -7,6 +7,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  SafeAreaView,
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import useImageAnalyzer from './hooks/useImageAnalyzer';
@@ -37,54 +38,64 @@ export default function RootLayout() {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer}>
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.placeholderContainer}
-          onPress={pickImage}
-        >
-          {imageUri ? (
-            <Image source={{ uri: imageUri }} style={styles.image} />
-          ) : (
-            <Text style={styles.placeholderText}>
-              대화 스크린샷을 업로드해주세요
-            </Text>
-          )}
-        </TouchableOpacity>
-
-        {loading ? (
-          <ActivityIndicator
-            size='large'
-            color='#0000ff'
-            style={styles.loadingIndicator}
-          />
-        ) : (
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContainer}
+        style={styles.scrollView}
+      >
+        <View style={styles.container}>
           <TouchableOpacity
-            style={[
-              styles.analyzeButton,
-              { backgroundColor: imageUri ? '#FF5722' : '#ccc' },
-            ]}
-            onPress={handleAnalyze}
-            disabled={!imageUri} // Disable the button when no image is selected
+            style={styles.placeholderContainer}
+            onPress={pickImage}
           >
-            <Text style={styles.analyzeButtonText}>분석하기</Text>
+            {imageUri ? (
+              <Image source={{ uri: imageUri }} style={styles.image} />
+            ) : (
+              <Text style={styles.placeholderText}>
+                대화 스크린샷을 업로드해주세요
+              </Text>
+            )}
           </TouchableOpacity>
-        )}
 
-        {analysisResult && (
-          <View style={styles.analysisResultContainer}>
-            <Text style={styles.analysisResultText}>{analysisResult}</Text>
-          </View>
-        )}
-      </View>
-    </ScrollView>
+          {loading ? (
+            <ActivityIndicator
+              size='large'
+              color='#0000ff'
+              style={styles.loadingIndicator}
+            />
+          ) : (
+            <TouchableOpacity
+              style={[
+                styles.analyzeButton,
+                { backgroundColor: imageUri ? '#FF5722' : '#ccc' },
+              ]}
+              onPress={handleAnalyze}
+              disabled={!imageUri} // Disable the button when no image is selected
+            >
+              <Text style={styles.analyzeButtonText}>분석하기</Text>
+            </TouchableOpacity>
+          )}
+
+          {analysisResult && (
+            <View style={styles.analysisResultContainer}>
+              <Text style={styles.analysisResultText}>{analysisResult}</Text>
+            </View>
+          )}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
+  scrollView: {
+    flex: 1,
+  },
   scrollContainer: {
     flexGrow: 1,
-    justifyContent: 'center',
   },
   container: {
     flex: 1,
@@ -92,6 +103,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 24,
     backgroundColor: '#f5f5f5',
+    minHeight: '100%',
   },
   image: {
     width: '100%',
@@ -102,13 +114,14 @@ const styles = StyleSheet.create({
   },
   placeholderContainer: {
     width: '90%',
-    height: '80%',
+    aspectRatio: 1,
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#ddd',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#e0e0e0',
+    marginBottom: 20,
   },
   placeholderText: {
     fontSize: 16,
@@ -122,9 +135,8 @@ const styles = StyleSheet.create({
     width: '90%',
     paddingVertical: 15,
     borderRadius: 8,
-    position: 'absolute',
-    bottom: 30,
     alignItems: 'center',
+    marginTop: 20,
   },
   analyzeButtonText: {
     color: '#fff',
