@@ -8,7 +8,7 @@ const openai = new OpenAI({
 
 const useImageAnalyzer = () => {
   const [loading, setLoading] = useState(false);
-  const [analysisResult, setAnalysisResult] = useState<string>('');
+  const [analysisResult, setAnalysisResult] = useState<string | null>('');
 
   const analyzeImage = async (imageUri: string) => {
     setLoading(true);
@@ -69,7 +69,7 @@ const useImageAnalyzer = () => {
     }
   };
 
-  return { loading, analysisResult, analyzeImage };
+  return { loading, analysisResult, analyzeImage, setAnalysisResult };
 };
 
 export default useImageAnalyzer;
