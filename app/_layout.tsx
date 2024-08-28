@@ -23,8 +23,6 @@ export default function RootLayout() {
       quality: 1,
     });
 
-    console.log('pickImage:', result);
-
     if (!result.canceled && result.assets) {
       setImageUri(result.assets[0].uri);
       setAnalysisResult(null);
