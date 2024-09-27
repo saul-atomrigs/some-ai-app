@@ -4,7 +4,7 @@ import * as ImagePicker from 'expo-image-picker';
 
 import useImageAnalyzer from '@/hooks/useImageAnalyzer';
 import { ImagePickerView, AnalysisResultView, AnalyzeButton } from '@/components';
-import { colors, size, spacing, typography } from '@/design-tokens';
+import { colors, size, spacing } from '@/design-tokens';
 
 export default function RootLayout() {
   const [imageUri, setImageUri] = useState<string | null>(null);
