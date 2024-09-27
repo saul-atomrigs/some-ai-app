@@ -1,4 +1,3 @@
-![mHWRrkUQNaCw_1024_500](https://github.com/user-attachments/assets/b320458e-783d-490a-81a9-5b11d6771eb5)
 <div align="center">
     <br />
     <h2> 썸 ai </h2>
@@ -11,7 +10,9 @@
     <img src="https://img.shields.io/badge/Expo-51.0.28-61DAFB?logo=expo"> 
     <img src="https://img.shields.io/badge/Jest-29.2.1-339933?logo=jest"> 
     <br /><br />
+    <img width="508" alt="Captura de pantalla 2024-09-27 a las 3 37 34 p  m" src="https://github.com/user-attachments/assets/dbe0ff84-30f2-44f9-bc03-a50e7fc643a5">
 </div>
+
 
 |   시작화면     |   분석내용   |                           |
 | :------------ | :------- | :-------------------------- |
