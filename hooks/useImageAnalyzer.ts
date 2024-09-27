@@ -10,6 +10,7 @@ const useImageAnalyzer = () => {
   const [loading, setLoading] = useState(false);
   const [analysisResult, setAnalysisResult] = useState<string | null>('');
 
+  /** 이미지를 base64로 인코딩 후 OpenAI API를 통해 이미지에서 텍스트를 추출하고, 이를 기반으로 이성 호감도를 분석하여 추천 대화를 생성합니다. */
   const analyzeImage = async (imageUri: string) => {
     setLoading(true);
     try {
