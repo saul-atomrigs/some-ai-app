@@ -11,7 +11,7 @@ const ImagePickerView: React.FC<ImagePickerViewProps> = ({ imageUri, onPickImage
   return (
     <TouchableOpacity style={styles.placeholderContainer} onPress={onPickImage}>
       {imageUri ? (
-        <Image source={{ uri: imageUri }} style={styles.image} />
+        <Image source={{ uri: imageUri }} style={styles.image} testID="image" />
       ) : (
         <Text style={styles.placeholderText}>대화 스크린샷을 업로드해주세요</Text>
       )}
