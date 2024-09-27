@@ -24,7 +24,9 @@
       "!**/.expo/**",
       "!**/scripts/**",
       "!**/app/+html.tsx",
-      "!**/app/+not-found.tsx"
+      "!**/app/+not-found.tsx",
+      "!**/app/_layout.tsx",
+      "!**/hooks/**"
     ]
   },
   "dependencies": {

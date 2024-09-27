@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react-native';
-import AnalyzeButton from '../AnalyzeButton';
+import AnalyzeButton from '../components/AnalyzeButton';
 
 describe('AnalyzeButton', () => {
   it('renders button with correct text when not loading and no analysisResult', () => {

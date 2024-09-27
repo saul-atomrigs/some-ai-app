@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import AnalysisResultView from '../AnalysisResultView';
+import AnalysisResultView from '../components/AnalysisResultView';
 
 describe('AnalysisResultView', () => {
   it('renders correctly when analysisResult is provided', () => {
