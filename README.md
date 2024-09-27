@@ -8,6 +8,7 @@
     <img src="https://img.shields.io/badge/React%20Native-0.74.5-61DAFB?logo=React"> 
     <br /><br />
     <img src="https://img.shields.io/badge/Expo-51.0.28-61DAFB?logo=expo"> 
+    <img src="https://img.shields.io/badge/OpenAI-4.56.0-000000?logo=openai"> 
     <img src="https://img.shields.io/badge/Jest-29.2.1-339933?logo=jest"> 
     <br /><br />
     <img width="508" alt="Captura de pantalla 2024-09-27 a las 3 37 34 p  m" src="https://github.com/user-attachments/assets/dbe0ff84-30f2-44f9-bc03-a50e7fc643a5">
