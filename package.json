@@ -22,7 +22,9 @@
       "!**/babel.config.js",
       "!**/expo-env.d.ts",
       "!**/.expo/**",
-      "!**/scripts/**"
+      "!**/scripts/**",
+      "!**/app/+html.tsx",
+      "!**/app/+not-found.tsx"
     ]
   },
   "dependencies": {
