@@ -11,10 +11,12 @@
     <img src="https://img.shields.io/badge/OpenAI-4.56.0-000000?logo=openai"> 
     <img src="https://img.shields.io/badge/ESLint-8.57.0-4B32C3?logo=eslint">
     <img src="https://img.shields.io/badge/Jest-29.2.1-339933?logo=jest"> 
-    <br /><br />
-    <img width="508" alt="Captura de pantalla 2024-09-27 a las 3 37 34 p  m" src="https://github.com/user-attachments/assets/dbe0ff84-30f2-44f9-bc03-a50e7fc643a5">
 </div>
 
+## Test results
+<div>
+    <img width="508" alt="Captura de pantalla 2024-09-27 a las 3 37 34 p  m" src="https://github.com/user-attachments/assets/dbe0ff84-30f2-44f9-bc03-a50e7fc643a5">
+</div>
 
 |   시작화면     |   분석내용   |                           |
 | :------------ | :------- | :-------------------------- |
