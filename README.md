@@ -18,6 +18,7 @@
     <img width="508" alt="Captura de pantalla 2024-09-27 a las 3 37 34 p  m" src="https://github.com/user-attachments/assets/dbe0ff84-30f2-44f9-bc03-a50e7fc643a5">
 </div>
 
+## Screenshots
 |   시작화면     |   분석내용   |                           |
 | :------------ | :------- | :-------------------------- |
 | ![Screenshot_1724647748](https://github.com/user-attachments/assets/635983e9-5b52-472a-b07a-c3ada97258ad) | ![Screenshot_20240823_153419_Expo Go](https://github.com/user-attachments/assets/ebaf25ca-aaec-4b8f-af31-24907a7967c2)
